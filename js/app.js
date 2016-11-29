@@ -80,6 +80,7 @@
 		}
 		//qiehuan
 		$scope.nowState = {}; 
+		$location.path('/all')
 		$scope.$location = $location;
 		$scope.$watch('$location.path()', function(now, old){
 			switch(now){
