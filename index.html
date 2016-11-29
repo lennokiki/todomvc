@@ -42,7 +42,7 @@
 	</div>
 	<input class="edit" value="Rule the web">
 </li> -->
-			<li ng-repeat="item in todo track by $index" ng-class="{completed:item.completed, editing:item.id===currendId}" id="data{{item.id}}" >
+			<li ng-repeat="item in todo | filter:nowState" ng-class="{completed:item.completed, editing:item.id===currendId}" id="data{{item.id}}" >
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="item.completed">
 							<label ng-dblclick="edits(item.id)">{{item.text}}</label>
@@ -61,13 +61,13 @@
 				<!-- Remove this if you don't implement routing -->
 				<ul class="filters">
 					<li>
-						<a class="selected" href="#/">All</a>
+						<a ng-class="{selected:$location.path()==='/all'}" href="#/all">All</a>
 					</li>
 					<li>
-						<a href="#/active">Active</a>
+						<a ng-class="{selected:$location.path()==='/active'}" href="#/active">Active</a>
 					</li>
 					<li>
-						<a href="#/completed">Completed</a>
+						<a ng-class="{selected:$location.path()==='/completed'}" href="#/completed">Completed</a>
 					</li>
 				</ul>
 				<!-- Hidden if no completed items are left ↓ -->

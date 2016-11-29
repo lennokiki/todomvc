@@ -7,7 +7,7 @@
 	var app = angular.module('myApp', []);
 
 	//主控制器
-	app.controller('myController',['$scope', function($scope){
+	app.controller('myController',['$scope', '$location', function($scope, $location){
 		//输入的内容
 		$scope.text = '';
 		//数据列表项
@@ -78,6 +78,22 @@
 			}
 			nows = !nows;
 		}
+		//qiehuan
+		$scope.nowState = {}; 
+		$scope.$location = $location;
+		$scope.$watch('$location.path()', function(now, old){
+			switch(now){
+				case '/active':
+					$scope.nowState = {completed:false};
+					break;
+				case '/completed':
+					$scope.nowState = {completed:true};
+					break;
+				default:
+					$scope.nowState = {};
+					break;
+			}
+		})
 	}])
 	
 
